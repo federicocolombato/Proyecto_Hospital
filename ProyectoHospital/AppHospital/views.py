@@ -10,3 +10,6 @@ def inicio(request):
 def doctor(request):
     return render(request,"AppHospital/doctor.html")
 
+#def doctor(request):
+    #return render(request,"AppHospital/doctor.html")
+
