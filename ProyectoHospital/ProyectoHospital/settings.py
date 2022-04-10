@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ProyectoHospital.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join('C:/Users/Admin/Desktop/Proyecto_Hospital/ProyectoHospital/AppHospital/templetes/AppHospital')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
