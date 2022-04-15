@@ -9,8 +9,6 @@ from AppHospital.forms import DoctorFormulario
 def inicio(request):
     return render(request,"AppHospital/inicio.html")
 
-
-
 def pacientes(request):
     return render(request,"AppHospital/pacientes.html")
 
@@ -38,7 +36,7 @@ def doctor(request):
 
                   informacion = miFormulario.cleaned_data
 
-                  doctor = Doctor (nombre=informacion['nombre'], apellido=informacion['apellido'],
+                  doctor = Doctor (nombre=informacion['nombre'], apellido=informacion['apellido'],sexo=informacion['sexo'],
                    email=informacion['email'], especialidad=informacion['especialidad']) 
 
                   doctor.save()
@@ -50,3 +48,60 @@ def doctor(request):
             miFormulario= DoctorFormulario() #Formulario vacio para construir el html
 
       return render(request, "AppHospital/doctor.html", {"miFormulario":miFormulario})
+
+def modificarDoctores(request):
+
+      doctores = Doctor.objects.all() #trae todos los profesores
+
+      contexto= {"doctores":doctores} 
+
+      return render(request, "AppHospital/modificarDoctores.html",contexto)
+
+
+def eliminarDoctor(request, doctor_nombre):
+
+    doctor = Doctor.objects.get(nombre=doctor_nombre)
+    doctor.delete()
+
+    # vuelvo al menú
+    doctores = Doctor.objects.all() #trae todos los profesores
+
+    contexto= {"doctores":doctores} 
+
+    return render(request, "AppHospital/modificarDoctores.html", contexto)
+
+def editarDoctor(request, doctor_nombre):
+
+    # Recibe el nombre del profesor que vamos a modificar
+    doctor = Doctor.objects.get(nombre=doctor_nombre)
+
+    # Si es metodo POST hago lo mismo que el agregar
+    if request.method == 'POST':
+
+        # aquí mellega toda la información del html
+        miFormulario = DoctorFormulario(request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:  # Si pasó la validación de Django
+
+            informacion = miFormulario.cleaned_data
+
+            doctor.nombre = informacion['nombre']
+            doctor.apellido = informacion['apellido']
+            doctor.email = informacion['email']
+            doctor.sexo = informacion['sexo']
+            doctor.especialidad = informacion['especialidad']
+
+            doctor.save()
+
+            # Vuelvo al inicio o a donde quieran
+            return render(request, "AppHospital/inicio.html")
+    # En caso que no sea post
+    else:
+        # Creo el formulario con los datos que voy a modificar
+        miFormulario = DoctorFormulario(initial={'nombre': doctor.nombre, 'apellido': doctor.apellido,
+                                                   'email': doctor.email, 'sexo':doctor.sexo, 'especialidad': doctor.especialidad})
+
+    # Voy al html que me permite editar
+    return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
