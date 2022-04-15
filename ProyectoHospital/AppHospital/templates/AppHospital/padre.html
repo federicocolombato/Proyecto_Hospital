@@ -20,12 +20,12 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Inicio</a>
-                <a class="navbar-brand" href="#">Doctores</a>
-                <a class="navbar-brand" href="#">Pacientes</a>
-                <a class="navbar-brand" href="#">Sucursales</a>
-                <a class="navbar-brand" href="#">Turnos</a>
-                <a class="navbar-brand" href="#">Sobre Nosotros</a>
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'Doctor' %}">Doctores</a>
+                <a class="navbar-brand" href="{% url 'Pacientes' %}">Pacientes</a>
+                <a class="navbar-brand" href="{% url 'Sucursales' %}">Sucursales</a>
+                <a class="navbar-brand" href="{% url 'Turnos' %}">Turnos</a>
+                <a class="navbar-brand" href="{% url 'SobreNosotros' %}">Sobre Nosotros</a>
             </div>
         </nav>
         <header class="masthead">

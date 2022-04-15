@@ -7,5 +7,6 @@ from django.contrib.auth.models import User
 class DoctorFormulario(forms.Form):   
     nombre= forms.CharField(max_length=30)
     apellido= forms.CharField(max_length=30)
+    sexo= forms.CharField(max_length=10)
     email= forms.EmailField()
     especialidad= forms.CharField(max_length=30)
