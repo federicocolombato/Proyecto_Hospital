@@ -1,16 +1,16 @@
 from django.http.request import QueryDict
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
-from AppHospital.models import Doctor
-from AppHospital.forms import DoctorFormulario
+from AppHospital.models import Doctor, Paciente
+from AppHospital.forms import DoctorFormulario, PacienteFormulario
 
 # Create your views here.
 
 def inicio(request):
     return render(request,"AppHospital/inicio.html")
 
-def pacientes(request):
-    return render(request,"AppHospital/pacientes.html")
+#def pacientes(request):
+#    return render(request,"AppHospital/pacientes.html")
 
 def turnos(request):
     return render(request,"AppHospital/turnos.html")
@@ -105,3 +105,28 @@ def editarDoctor(request, doctor_nombre):
 
     # Voy al html que me permite editar
     return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
+
+def pacientes(request):
+
+    if request.method == 'POST':
+    
+        miPacienteFormulario = PacienteFormulario(request.POST) #aquí mellega toda la información del html
+        
+        print(miPacienteFormulario)
+
+        if miPacienteFormulario.is_valid:   #Si pasó la validación de Django
+
+            informacion = miPacienteFormulario.cleaned_data
+
+            paciente = Paciente (nombre=informacion['nombre'], apellido=informacion['apellido'],
+            email=informacion['email'], DNI=informacion['DNI'], sexo=informacion['Sexo'], fechaDeIngreso=informacion['Fecha de Ingreso']) 
+
+            paciente.save()
+
+            return render(request, "AppHospital/inicio.html") #Vuelvo al inicio o a donde quieran
+
+    else: 
+
+        miPacienteFormulario= PacienteFormulario() #Formulario vacio para construir el html
+
+    return render(request, "AppHospital/pacientes.html", {"miPacienteFormulario":miPacienteFormulario})
