@@ -10,3 +10,11 @@ class DoctorFormulario(forms.Form):
     sexo= forms.CharField(max_length=10)
     email= forms.EmailField()
     especialidad= forms.CharField(max_length=30)
+
+class PacienteFormulario(forms.Form):
+    nombre= forms.CharField(max_length=30)
+    apellido= forms.CharField(max_length=30)
+    dni= forms.IntegerField()
+    sexo= forms.CharField(max_length=10)
+    email= forms.EmailField()
+    fechaDeIngreso= forms.DateTimeField()
