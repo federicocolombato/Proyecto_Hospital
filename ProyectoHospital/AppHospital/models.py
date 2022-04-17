@@ -28,4 +28,11 @@ class Sucursales(models.Model):
     cantidadDePersonal=models.IntegerField
     def __str__(self):
         return f"Localidad: {self.localidad} - Direccion {self.direccion} - Numero {self.numero} - Empleados {self.cantidadDePersonal}"
-        
+
+class Turno(models.Model):
+    nombre= models.CharField(max_length=30)
+    apellido= models.CharField(max_length=30)
+    doctor= models.CharField(max_length=30)
+    especialidad = models.CharField(max_length=30)
+    email= models.EmailField()
+    date = models.DateField()

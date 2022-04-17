@@ -4,8 +4,29 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Turnos</h1>
+ <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+ <h1>Formulario - Turnos</h1>
+    
+ {% if miFormulario.errors %}
 
-<p>Turnos</p>
+ <p style="color: red;"> Están mal los datos, revisar</p>
+
+ {% endif %}
+
+
+ <form action="" method="POST">{% csrf_token %}
+
+         
+     <table>
+
+         {{ miFormulario.as_table }}
+
+
+     </table>
+
+
+     <input type="submit", value="Enviar">
+
+ </form>
 
 {% endblock %}

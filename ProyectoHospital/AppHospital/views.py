@@ -1,8 +1,9 @@
+import email
 from django.http.request import QueryDict
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
-from AppHospital.models import Doctor
-from AppHospital.forms import DoctorFormulario
+from AppHospital.models import *
+from AppHospital.forms import *
 
 # Create your views here.
 
@@ -36,8 +37,8 @@ def doctor(request):
 
                   informacion = miFormulario.cleaned_data
 
-                  doctor = Doctor (nombre=informacion['nombre'], apellido=informacion['apellido'],sexo=informacion['sexo'],
-                   email=informacion['email'], especialidad=informacion['especialidad']) 
+                  doctor = Doctor (nombre=informacion['nombre'], apellido=informacion['apellido'],
+                  sexo=informacion['sexo'],email=informacion['email'], especialidad=informacion['especialidad']) 
 
                   doctor.save()
 
@@ -105,3 +106,29 @@ def editarDoctor(request, doctor_nombre):
 
     # Voy al html que me permite editar
     return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
+
+
+def turnos(request):
+
+      if request.method == 'POST':
+
+            miFormulario = TurnoFormulario(request.POST) #aquí mellega toda la información del html
+
+            print(miFormulario)
+
+            if miFormulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = miFormulario.cleaned_data
+
+                  turno = Turno (nombre=informacion['nombre'], apellido=informacion['apellido'],
+                  doctor=informacion['doctor'],especilidad=informacion['especialidad'],email=informacion['email'], date=informacion['date']) 
+
+                  turno.save()
+
+                  return render(request, "AppHospital/inicio.html") #Vuelvo al inicio o a donde quieran
+
+      else: 
+
+            miFormulario= TurnoFormulario() #Formulario vacio para construir el html
+
+      return render(request, "AppHospital/turnos.html", {"miFormulario":miFormulario})
