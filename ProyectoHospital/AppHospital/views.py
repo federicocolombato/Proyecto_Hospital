@@ -1,8 +1,8 @@
 from django.http.request import QueryDict
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
-from AppHospital.models import Doctor, Paciente
-from AppHospital.forms import DoctorFormulario, PacienteFormulario
+from AppHospital.models import *
+from AppHospital.forms import *
 
 # Create your views here.
 
