@@ -12,8 +12,8 @@ def inicio(request):
 #def pacientes(request):
 #    return render(request,"AppHospital/pacientes.html")
 
-def turnos(request):
-    return render(request,"AppHospital/turnos.html")
+#def turnos(request):
+#    return render(request,"AppHospital/turnos.html")
 
 def sucursales(request):
     return render(request,"AppHospital/sucursales.html")
@@ -130,3 +130,28 @@ def pacientes(request):
         miPacienteFormulario= PacienteFormulario() #Formulario vacio para construir el html
 
     return render(request, "AppHospital/pacientes.html", {"miPacienteFormulario":miPacienteFormulario})
+
+def turnos(request):
+
+      if request.method == 'POST':
+
+            miFormulario = TurnoFormulario(request.POST) #aquí mellega toda la información del html
+
+            print(miFormulario)
+
+            if miFormulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = miFormulario.cleaned_data
+
+                  turno = Turno (nombre=informacion['nombre'], apellido=informacion['apellido'],
+                  doctor=informacion['doctor'],especilidad=informacion['especialidad'],email=informacion['email'], date=informacion['date']) 
+
+                  turno.save()
+
+                  return render(request, "AppHospital/inicio.html") #Vuelvo al inicio o a donde quieran
+
+      else: 
+
+            miFormulario= TurnoFormulario() #Formulario vacio para construir el html
+
+      return render(request, "AppHospital/turnos.html", {"miFormulario":miFormulario})

@@ -18,3 +18,11 @@ class PacienteFormulario(forms.Form):
     sexo= forms.CharField(max_length=10)
     email= forms.EmailField()
     fechaDeIngreso= forms.DateTimeField()
+
+class TurnoFormulario(forms.Form):
+    nombre= forms.CharField(max_length=30)
+    apellido= forms.CharField(max_length=30)
+    doctor= forms.CharField(max_length=30)
+    especialidad = forms.CharField(max_length=30)
+    email= forms.EmailField()
+    date = forms.DateField()
