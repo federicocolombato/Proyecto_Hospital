@@ -155,3 +155,4 @@ def turnos(request):
             miFormulario= TurnoFormulario() #Formulario vacio para construir el html
 
       return render(request, "AppHospital/turnos.html", {"miFormulario":miFormulario})
+
