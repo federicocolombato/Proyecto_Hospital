@@ -1,11 +1,30 @@
-{% extends "AppHospital/padre.html" %}
-
-{% load static %}
 
 {% block contenidoQueCambia %}
 
 <h1>Inicio</h1>
 
-<p>Informacion de los inicio</p>
+<table BORDER="2">
+    <tr>
+      <th>Servicio</th>
+      <th>Telefono</th>
+    </tr>
+
+    <tr>      
+        <td class="bold">Atención telefónica</td> <td>(011)4959-0200</td>
+    </tr>
+    <tr>
+        <td>Central de turnos</td> <td>(011)4959-0300</td>
+    </tr>
+    <tr>
+        <td>Derivaciones e Internación</td> <td>0-800-333-0420</td>
+    </tr>
+    <tr>
+        <td>Atención al afiliado</td> <td>(011)4959-0555</td>
+    </tr>
+    <tr>
+        <td>Urgencias y Emergencias solo afiliados Plan de Salud</td> <td>(011)4959-5000</td>
+    </tr>
+
+  </table>
 
 {% endblock %}
