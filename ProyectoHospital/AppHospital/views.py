@@ -156,3 +156,6 @@ def turnos(request):
 
       return render(request, "AppHospital/turnos.html", {"miFormulario":miFormulario})
 
+class listaHospitales(ListView):
+    model = Sucursales
+    template_name = 'templates/AppHospital/sucursalesLista.html'
