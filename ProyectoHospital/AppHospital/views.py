@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from AppHospital.models import *
 from AppHospital.forms import *
 from django.views.generic.list import ListView
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 
 def inicio(request):
@@ -160,3 +161,51 @@ def turnos(request):
 class listaHospitales(ListView):
     model = Sucursales
     template_name = 'templates/AppHospital/sucursalesLista.html'
+
+#Cambiar Appcoder por apphospital en caso de no 
+
+def login_request(request):
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():  # Si pasó la validación de Django
+
+            usuario = form.cleaned_data.get('username')
+            contrasenia = form.cleaned_data.get('password')
+
+            user = authenticate(username= usuario, password=contrasenia)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, "AppHospital/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request, "AppHospital/inicio.html", {"mensaje":"Datos incorrectos"})
+           
+        else:
+
+            return render(request, "AppHospital/inicio.html", {"mensaje":"Formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "AppHospital/login.html", {"form": form})    
+
+#Crear HTML de Registro
+def register(request):
+
+      if request.method == 'POST':
+
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"AppHospital/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+
+      return render(request,"AppHospital/registro.html" ,  {"form":form})
