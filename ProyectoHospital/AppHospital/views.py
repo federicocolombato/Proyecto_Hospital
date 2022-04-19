@@ -24,6 +24,33 @@ def sobreNosotros(request):
 #def doctor(request):
     #return render(request,"AppHospital/doctor.html")
 
+def doctor(request):
+
+      if request.method == 'POST':
+
+            miFormulario = DoctorFormulario(request.POST) #aquí mellega toda la información del html
+
+            print(miFormulario)
+
+            if miFormulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = miFormulario.cleaned_data
+
+                  doctor = Doctor (nombre=informacion['nombre'], apellido=informacion['apellido'],sexo=informacion['sexo'],
+                   email=informacion['email'], especialidad=informacion['especialidad']) 
+
+                  doctor.save()
+
+                  return render(request, "AppHospital/inicio.html") #Vuelvo al inicio o a donde quieran
+
+      else: 
+
+            miFormulario= DoctorFormulario() #Formulario vacio para construir el html
+
+      return render(request, "AppHospital/doctor.html", {"miFormulario":miFormulario})
+
+
+
 def cargarDoctor(request):
 
       if request.method == 'POST':
