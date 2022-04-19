@@ -1,8 +1,8 @@
 from django.http.request import QueryDict
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
-from AppHospital.models import Doctor, Paciente
-from AppHospital.forms import DoctorFormulario, PacienteFormulario
+from AppHospital.models import *
+from AppHospital.forms import *
 
 # Create your views here.
 
@@ -24,7 +24,7 @@ def sobreNosotros(request):
 #def doctor(request):
     #return render(request,"AppHospital/doctor.html")
 
-def doctor(request):
+def cargarDoctor(request):
 
       if request.method == 'POST':
 
@@ -47,7 +47,7 @@ def doctor(request):
 
             miFormulario= DoctorFormulario() #Formulario vacio para construir el html
 
-      return render(request, "AppHospital/doctor.html", {"miFormulario":miFormulario})
+      return render(request, "AppHospital/cargarDoctor.html", {"miFormulario":miFormulario})
 
 def modificarDoctores(request):
 
