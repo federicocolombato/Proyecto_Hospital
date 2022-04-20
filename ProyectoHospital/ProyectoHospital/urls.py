@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#Para imagenes
+from django.conf import settings
+from django.conf.urls.static import static
 
+from ProyectoHospital.ProyectoHospital.settings import MEDIA_ROOTH
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppHospital/', include('AppHospital.urls')),
+    
+  
+
 ]
+#para imagenes
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOTH)
