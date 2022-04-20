@@ -1,5 +1,6 @@
 from django.urls import path
 from AppHospital import views
+from AppHospital.views import listaHospitales
 
 urlpatterns = [
     path('inicio', views.inicio, name ='Inicio'),
@@ -7,9 +8,14 @@ urlpatterns = [
     path('pacientes', views.pacientes, name ='Pacientes'),
     path('turnos', views.turnos, name ='Turnos'),
     path('sucursales', views.sucursales, name ='Sucursales'),
+    path('sucursalesLista', listaHospitales.as_view, name = 'listaHosp'),
     path('sobrenosotros', views.sobreNosotros, name ='SobreNosotros'),
     path('modificarDoctores', views.modificarDoctores, name = "ModificarDoctores"),
     path('eliminarDoctor/<doctor_nombre>/', views.eliminarDoctor, name="EliminarDoctor"),
     path('editarDoctor/<doctor_nombre>/', views.editarDoctor, name="EditarDoctor"),
+    path('login/', views.login_request, name = 'Login'),
+    path('register/', views.register, name = 'Registro'),
+    path('logout/', LogoutView.as_view(template_name= 'templates/AppHospital/logout.html'), name = 'Logout'),
+
 
 ]
