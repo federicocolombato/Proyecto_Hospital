@@ -3,9 +3,11 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
 from AppHospital.models import *
 from AppHospital.forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def inicio(request):
     return render(request,"AppHospital/inicio.html")
 
@@ -24,6 +26,7 @@ def sobreNosotros(request):
 #def doctor(request):
     #return render(request,"AppHospital/doctor.html")
 
+@login_required
 def doctor(request):
 
       if request.method == 'POST':
@@ -133,6 +136,7 @@ def editarDoctor(request, doctor_nombre):
     # Voy al html que me permite editar
     return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
 
+@login_required
 def pacientes(request):
 
     if request.method == 'POST':
