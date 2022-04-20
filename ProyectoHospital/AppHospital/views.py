@@ -220,7 +220,7 @@ def register(request):
 @login_required
 def editarPerfil(request):
 
-    usuar = request.user
+    usuario = request.user
 
     if request.method == 'POST':
         miFormulario = UserEditForm(request.POST)
