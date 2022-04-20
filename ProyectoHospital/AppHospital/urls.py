@@ -1,6 +1,6 @@
 from django.urls import path
 from AppHospital import views
-from AppHospital.views import listaHospitales
+from AppHospital.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
