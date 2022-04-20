@@ -1,9 +1,14 @@
+from dataclasses import field
+from re import template
 from django.http.request import QueryDict
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
 from AppHospital.models import *
 from AppHospital.forms import *
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -57,13 +62,13 @@ def doctor(request):
 
       return render(request, "AppHospital/doctor.html", {"miFormulario":miFormulario})
 
-def modificarDoctores(request):
+def leerDoctores(request):
 
       doctores = Doctor.objects.all() #trae todos los profesores
 
       contexto= {"doctores":doctores} 
 
-      return render(request, "AppHospital/modificarDoctores.html",contexto)
+      return render(request, "AppHospital/leerDoctores.html",contexto)
 
 
 def eliminarDoctor(request, doctor_nombre):
@@ -169,7 +174,28 @@ class listaHospitales(ListView):
     model = Sucursales
     template_name = 'templates/AppHospital/sucursalesLista.html'
 
-#Cambiar Appcoder por apphospital en caso de no 
+class PacienteList(ListView):
+    model = Paciente
+    template = "AppHospital/paciente_list.html"
+
+class PacienteDetalle(DetailView):
+    model = Paciente
+    template = "AppHospital/paciente_detalle"
+
+class PacienteCreacion(CreateView):
+    model = Paciente
+    success_url = "/AppHospital/paciente/list"
+    fields = '__all__'
+
+class PacienteUpdate(UpdateView):
+    model = Paciente
+    success_url = "/AppHospital/paciente/list"
+    fields = '__all__'
+
+class PacienteDelete(DeleteView):
+    model = Paciente
+    success_url = "/AppHospital/paciente/list"
+
 
 def login_request(request):
 
@@ -220,7 +246,7 @@ def register(request):
 @login_required
 def editarPerfil(request):
 
-    usuar = request.user
+    usuario = request.user
 
     if request.method == 'POST':
         miFormulario = UserEditForm(request.POST)
