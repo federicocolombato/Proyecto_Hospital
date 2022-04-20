@@ -23,6 +23,9 @@ def sucursales(request):
 def sobreNosotros(request):
     return render(request,"AppHospital/sobreNosotros.html")
 
+def ayuda(request):
+    return render(request,"AppHospital/ayuda.html")
+
 #def doctor(request):
     #return render(request,"AppHospital/doctor.html")
 
