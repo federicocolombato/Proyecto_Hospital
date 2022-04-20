@@ -1,5 +1,5 @@
 from django.db import models
-from django.db import datetime
+
 # Create your models here.
 from AppHospital.views import User
 
@@ -39,7 +39,7 @@ class Turno(models.Model):
     date = models.DateField()
         
 
-class Avatar(models.model):
+class Avatar(models.Model):
     #vinculo con usuario
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #subcarpeta de avatares
