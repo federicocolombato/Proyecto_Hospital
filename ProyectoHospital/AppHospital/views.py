@@ -6,8 +6,10 @@ from AppHospital.forms import *
 from django.views.generic.list import ListView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
+@login_required
 def inicio(request):
     return render(request,"AppHospital/inicio.html")
 
@@ -29,6 +31,7 @@ def ayuda(request):
 #def doctor(request):
     #return render(request,"AppHospital/doctor.html")
 
+@login_required
 def doctor(request):
 
       if request.method == 'POST':
@@ -111,6 +114,7 @@ def editarDoctor(request, doctor_nombre):
     # Voy al html que me permite editar
     return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
 
+@login_required
 def pacientes(request):
 
     if request.method == 'POST':
