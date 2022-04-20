@@ -220,11 +220,11 @@ def register(request):
 @login_required
 def editarPerfil(request):
 
-    usuar = request.user
+    usuario = request.user
 
     if request.method == 'POST':
         miFormulario = UserEditForm(request.POST)
-        if miFormulario.is_valid
+        if miFormulario.is_valid:
 
             informacion = miFormulario.cleaned_data
 
@@ -240,6 +240,6 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={'email':usuario.email})
 
     
-    return render(request, "AppHospital/editarPerfil.html", {"miFormulario":miFormulariom, "usuario":usuario})
+    return render(request, "AppHospital/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
 
