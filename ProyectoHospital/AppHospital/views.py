@@ -133,7 +133,7 @@ def pacientes(request):
             informacion = miPacienteFormulario.cleaned_data
 
             paciente = Paciente (nombre=informacion['nombre'], apellido=informacion['apellido'],
-            email=informacion['email'], DNI=informacion['DNI'], sexo=informacion['Sexo'], fechaDeIngreso=informacion['Fecha de Ingreso']) 
+            email=informacion['email'], dni=informacion['dni'], sexo=informacion['sexo'], fechaDeIngreso=informacion['fechaDeIngreso']) 
 
             paciente.save()
 
@@ -180,7 +180,7 @@ class PacienteList(ListView):
 
 class PacienteDetalle(DetailView):
     model = Paciente
-    template = "AppHospital/paciente_detalle"
+    template = "AppHospital/paciente_detail"
 
 class PacienteCreacion(CreateView):
     model = Paciente
