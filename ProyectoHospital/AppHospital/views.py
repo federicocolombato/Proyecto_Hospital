@@ -266,6 +266,28 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={'email':usuario.email})
 
     
-    return render(request, "AppHospital/editarPerfil.html", {"miFormulario":miFormulariom, "usuario":usuario})
+    return render(request, "AppHospital/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+def buscarPaciente (request):
+
+    return render(request,"AppHospital/buscarPaciente.html")
+
+def buscar(request):
+
+    if request.GET["p"]:
+
+        #mensaje="El paciente: %r" %request.GET['doc']
+        dni = request.GET["p"]
+        
+        paciente = Paciente.objects.filter(dni__icontains=dni)
+
+        return render(request,"AppHospital/buscar.html", {"pacientes":paciente, "dni":dni})
+
+    else:
+        mensaje="Intoduce un DNI"
+
+    return HttpResponse(mensaje)
+
+
 
 

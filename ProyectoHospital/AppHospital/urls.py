@@ -24,6 +24,8 @@ urlpatterns = [
     path('ayuda', views.ayuda, name = 'Ayuda'),
     path('logout/', LogoutView.as_view(template_name= 'AppHospital/logout.html'), name = 'Logout'),
     path('editarPerfil', views.editarPerfil, name = 'Editar Perfil'),
+    path('buscarPaciente', views.buscarPaciente, name = 'BuscarPaciente'),
+    path('buscar/', views.buscar, name = 'Buscar'),
 
 
 ]
