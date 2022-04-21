@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Doctor(models.Model):
@@ -36,4 +37,9 @@ class Turno(models.Model):
     especialidad = models.CharField(max_length=30)
     email= models.EmailField()
     date = models.DateField()
-        
+
+class Avatar(models.Model):
+    #vinculo con usuario
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #subcarpeta de avatares
+    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)

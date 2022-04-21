@@ -7,3 +7,5 @@ admin.site.register(Doctor)
 admin.site.register(Paciente)
 
 admin.site.register(Sucursales)
+
+admin.site.register(Avatar)

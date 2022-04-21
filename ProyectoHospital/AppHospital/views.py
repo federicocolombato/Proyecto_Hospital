@@ -268,6 +268,10 @@ def editarPerfil(request):
     
     return render(request, "AppHospital/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
+def logout_view(request):
+    logout(request)
+    return render(request,"AppHospital/inicio.html")
+
 def buscarPaciente (request):
 
     return render(request,"AppHospital/buscarPaciente.html")
