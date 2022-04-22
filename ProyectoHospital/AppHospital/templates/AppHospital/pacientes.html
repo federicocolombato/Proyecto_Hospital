@@ -4,29 +4,12 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Formulario - Agregar Pacientes</h1>
-    
-{% if miPacienteFormulario.errors %}
+<p>
+    <a href="{% url 'BuscarPaciente' %}">Buscar</a> | 
+    <a href="{% url 'CargarPacientes' %}">Cargar Paciente</a> | 
 
-<p style="color: red;"> Están mal los datos, revisar</p>
+</p>
 
-{% endif %}
-
-
-<form action="" method="POST">{% csrf_token %}
-
-        
-    <table border="1", style="width:300px">
-
-        {{ miPacienteFormulario.as_table }}
-
-
-    </table>
-
-
-    <input type="submit", value="Enviar">
-
-</form>
 
 
 {% endblock %}

@@ -1,3 +1,10 @@
+{% extends "AppHospital/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +17,18 @@
     
 
     {% if pacientes %}
-        <p>Buscnado</p>
+        <p>Buscando</p>
         <ul>
             {% for paciente in pacientes %}
-                <li>
+                
+                    <p>Nombre del Paciente: <i>{{ paciente.nombre }}</i></p>
+                    <p>Apellido: <i>{{ paciente.apellido }}</i></p>
+                    <p>DNI: <i>{{ paciente.dni }}</i></p>
+                    <p>SEXO: <i>{{ paciente.sexo }}</i></p>
+                    <p>email: <i>{{ paciente.email }}</i></p>
+                    <p>Fecha de Ingreso: <i>{{ paciente.fechaDeIngreso }}</i></p>
 
-                    {{paciente.nombre}}
-
-                </li>
+           
             {% endfor %}
         </ul>
     {% else %}
@@ -25,3 +36,5 @@
     {% endif %}
 </body>
 </html>
+
+{% endblock %}

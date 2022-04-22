@@ -18,8 +18,8 @@ from django.contrib.auth.decorators import login_required
 def inicio(request):
     return render(request,"AppHospital/inicio.html")
 
-#def pacientes(request):
-#    return render(request,"AppHospital/pacientes.html")
+def pacientes(request):
+    return render(request,"AppHospital/pacientes.html")
 
 #def turnos(request):
 #    return render(request,"AppHospital/turnos.html")
@@ -120,7 +120,7 @@ def editarDoctor(request, doctor_nombre):
     return render(request, "AppHospital/editarDoctor.html", {"miFormulario": miFormulario, "doctor_nombre": doctor_nombre})
 
 @login_required
-def pacientes(request):
+def cargarPacientes(request):
 
     if request.method == 'POST':
     
@@ -143,7 +143,7 @@ def pacientes(request):
 
         miPacienteFormulario= PacienteFormulario() #Formulario vacio para construir el html
 
-    return render(request, "AppHospital/pacientes.html", {"miPacienteFormulario":miPacienteFormulario})
+    return render(request, "AppHospital/cargarPaciente.html", {"miPacienteFormulario":miPacienteFormulario})
 
 def turnos(request):
 
