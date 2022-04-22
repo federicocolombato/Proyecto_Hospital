@@ -26,6 +26,7 @@ urlpatterns = [
     path('editarPerfil', views.editarPerfil, name = 'Editar Perfil'),
     path('buscarPaciente', views.buscarPaciente, name = 'BuscarPaciente'),
     path('buscar/', views.buscar, name = 'Buscar'),
+    path('agregarAvatar', views.agregarAvatar, name = 'AgregarAvatar'),
 
 
 ]

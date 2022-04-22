@@ -51,3 +51,7 @@ class UserEditForm(UserCreationForm):
         #Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
+class AvatarFormulario(forms.Form):
+    nombre = forms.CharField(max_length=30)
+    descripcion = forms.CharField(max_length=30)
+    email= forms.EmailField()
