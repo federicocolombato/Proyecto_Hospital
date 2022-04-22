@@ -134,8 +134,7 @@ def cargarPacientes(request):
 
             informacion = miPacienteFormulario.cleaned_data
 
-            paciente = Paciente (nombre=informacion['nombre'], apellido=informacion['apellido'],
-            email=informacion['email'], dni=informacion['dni'], sexo=informacion['sexo'], fechaDeIngreso=informacion['fechaDeIngreso']) 
+            paciente = Paciente (nombre=informacion['nombre'], apellido=informacion['apellido'],email=informacion['email'], dni=informacion['dni'], sexo=informacion['sexo'], fechaDeIngreso=informacion['fechaDeIngreso']) 
 
             paciente.save()
 
@@ -160,7 +159,7 @@ def turnos(request):
                   informacion = miFormulario.cleaned_data
 
                   turno = Turno (nombre=informacion['nombre'], apellido=informacion['apellido'],
-                  doctor=informacion['doctor'],especilidad=informacion['especialidad'],email=informacion['email'], date=informacion['date']) 
+                  doctor=informacion['doctor'],especialidad=informacion['especialidad'],email=informacion['email'], date=informacion['date']) 
 
                   turno.save()
 
