@@ -9,3 +9,5 @@ Cada estudiante realizo su set designado de templates.html y el framework inicia
 
 Models.py fue desarrollado por Facundo Perez junto con la mitad del contenido de views.py.
 Forms.py, urls.py fue desarrollado por Federico Colombato junto con la mitad del contenido de views.py.
+
+Link Video + Prueba: https://drive.google.com/drive/folders/1MOUmV-egKTbytbpxx29HiT0vtkJaqUFh?usp=sharing
